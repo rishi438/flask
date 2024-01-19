@@ -7,7 +7,7 @@
 
 <script>
 import BreadCrumbNavigation from '@/components/BreadCrumbNavigation.vue';
-import DataTable from './DataTable.vue';
+import DataTable from '@/components/DataTable.vue';
 export default {
   name: 'AllExpenditure',
   components: {

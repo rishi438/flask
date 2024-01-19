@@ -21,7 +21,7 @@ const routes = [
   {
     path: "/user",
     components: {
-      default: () => import("@/layouts/user/Default.vue"),
+      default: () => import("@/layouts/admin/Default.vue"),
     },
     children: [
       {

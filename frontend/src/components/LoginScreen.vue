@@ -15,7 +15,7 @@
               </v-form>
             </v-card-text>
             <v-card-actions class="d-flex justify-end pr-4">
-              <v-btn color="primary" to="/">Login</v-btn>
+              <v-btn color="primary" :to="'/'+login_type.toLowerCase()+'/home'">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
