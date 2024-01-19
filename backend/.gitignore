@@ -1,9 +1,8 @@
 __pycache__/
-instance/
+# instance/
 *.bak
 *.dat
 *.dir
-.pre-commit-config.yaml
 venv/
-*.md
-*.txt
+# *.md
+# *.txt
