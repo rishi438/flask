@@ -8,12 +8,14 @@
 2. Activate the virtual environment: `.venv\Scripts\activate`
 3. Upgrade pip: `python.exe -m pip install --upgrade pip`
 4. Install dependencies: `pip install -r requirement.txt`
+5. Configure Gmail SMTP with Password and Username 
 
 ## Running
 - **Terminal 1:** `python run.py`
 - **Terminal 2:** `celery -A run.celery_scheduler worker --pool=solo -l info` (Worker)
 - **Terminal 3:** `celery -A run.celery_scheduler beat -l info` (Scheduler)
 - **Terminal 4:** `celery -A run.celery_scheduler flower` (Check Job Status GUI, Not Necessary)
+
 
 # Frontend
 
