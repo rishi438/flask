@@ -32,7 +32,7 @@
 # Sample API
 
 ### Expense Add API
-- **Endpoint:** [http://127.0.0.1:5000/api/add-expense/](http://127.0.0.1:5000/api/add-expense/)
+- **Endpoint:** `http://127.0.0.1:5000/api/add-expense/`
 - **Body:**
   ```json
   {
