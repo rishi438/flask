@@ -8,7 +8,7 @@
 2. Activate the virtual environment: `.venv\Scripts\activate`
 3. Upgrade pip: `python.exe -m pip install --upgrade pip`
 4. Install dependencies: `pip install -r requirement.txt`
-5. Configure Gmail SMTP with Password and Username 
+5. Configure Gmail SMTP with Password,Mail and Username 
 
 ## Running
 - **Terminal 1:** `python run.py`
