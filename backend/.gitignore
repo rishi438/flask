@@ -6,3 +6,4 @@ instance/
 .pre-commit-config.yaml
 venv/
 *.md
+*.txt
