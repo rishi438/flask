@@ -30,8 +30,8 @@
               :disabled="!(selected_bill_type != 'EQUAL' && share_amount_perc && add_btn)"
               v-if="selected_bill_type == 'PERCENTAGE' || selected_bill_type == 'EXACT'" @click="add_shares"> ADD </v-btn>
           </div>
-          <div class="py-2 my-3 d-flex justify-center bg-red-accent-1 text-white" v-if="selected_bill_type != 'EQUAL'">
-             <div v-for="(value, index) in shares" :key="index">{{ value["user_id"] }} - {{ value["amount"] }}</div></div>
+          <div class="text-white" v-if="selected_bill_type != 'EQUAL'">
+             <div class="bg-red-accent-1 py-2 my-3 px-3" v-for="(value, index) in shares" :key="index">{{ value["user_id"] }} --> {{ value["amount"] }}</div></div>
         </div>
         <v-text-field clearable v-show="selected_bill_type === 'PERCENTAGE' || selected_bill_type == 'EQUAL'"
           :label="'Enter bill amount'" :rules="[(value) => {
@@ -90,13 +90,6 @@ export default {
     },
     handle_form() {
       this.current_user = "89cbef9f-ccc3-43fd-afd7-8da78d57c783";
-      // console.log(          {
-      //       amount:parseInt(this.total_amount, 10),
-      //       payer:this.current_user,
-      //       type:this.selected_bill_type,
-      //       participants:[...this.participants],
-      //       shares:isProxy(this.shares)?toRaw(this.shares):''
-      //     })
       axios
           .post("http://127.0.0.1:5000/api/add-expense/",
           {
@@ -107,10 +100,17 @@ export default {
             shares:isProxy(this.shares)?toRaw(this.shares):''
           })
           .then(res=>{
-            console.log(res.data)
+            console.log(res.data.message)
+            if(res.data.message){
+              this.selected_bill_type=null;
+              this.total_amount=0;
+              this.participants=[];
+              this.shares={};
+              this.clear_text()
+            }
           })
           .catch(err=>{
-            console.error(err)
+            console.error("Error Occured: ",err);
           });
     },
   },

@@ -49,9 +49,9 @@ export default {
   data() {
     return {
       search_param: null,
-    btn_state: false,
-    search_value:'',
-    search:'',
+      btn_state: false,
+      search_value:'',
+      search:'',
     }
   },
   methods: {

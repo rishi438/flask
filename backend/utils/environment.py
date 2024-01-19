@@ -29,4 +29,4 @@ MAIL_DEFAULT_SENDER = os.environ.get("MAIL_DEFAULT_SENDER", "ranjinijamun@gmail.
 CELERY_RABBITMQ_BROKER = os.environ.get(
     "CELERY_RABBITMQ_BROKER", "pyamqp://guest:guest@localhost:5672//"
 )
-FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:3001")
+FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:4173")

@@ -4,3 +4,5 @@ instance/
 *.dat
 *.dir
 .pre-commit-config.yaml
+venv/
+*.md
