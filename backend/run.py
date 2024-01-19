@@ -12,7 +12,7 @@ with app.app_context():
 
 
 def page_not_found(ex):
-    return make_response(render_template("error.html"), 404)
+    return make_response(render_template("/layouts/error.html"), 404)
 
 
 app.register_error_handler(404, page_not_found)
@@ -23,7 +23,7 @@ def home():
     data = {
         "name": "UP and Running."
     }
-    return make_response(render_template("index.html", **data), 200)
+    return make_response(render_template("/layouts/index.html", **data), 200)
 
 
 if __name__ == "__main__":
