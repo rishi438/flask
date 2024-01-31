@@ -15,7 +15,9 @@
 - **Terminal 2:** `celery -A run.celery_scheduler worker --pool=solo -l info` (Worker)
 - **Terminal 3:** `celery -A run.celery_scheduler beat -l info` (Scheduler)
 - **Terminal 4:** `celery -A run.celery_scheduler flower` (Check Job Status GUI, Not Necessary)
-
+#### OR
+### Autmated running
+***Run directly start_app.exe***  
 
 # Frontend
 
