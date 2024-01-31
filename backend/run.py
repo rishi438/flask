@@ -18,7 +18,7 @@ def page_not_found(ex):
 app.register_error_handler(404, page_not_found)
 
 
-@app.route("/test")
+@app.route("/test",methods=["GET"])
 def home():
     data = {
         "name": "UP and Running."
