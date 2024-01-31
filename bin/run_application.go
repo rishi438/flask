@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	backendDir := "../backend"
+	backendDir := "./backend"
 	if err := os.Chdir(backendDir); err != nil {
 		log.Fatalf("Error changing working directory: %v", err)
 	}
