@@ -6,10 +6,11 @@ import (
 	"os/exec"
 	"path/filepath"
 	"sync"
+	"time"
 )
 
 func main() {
-	backendDir := "./backend"
+	backendDir := "../backend"
 	if err := os.Chdir(backendDir); err != nil {
 		log.Fatalf("Error changing working directory: %v", err)
 	}
@@ -21,6 +22,7 @@ func main() {
 	if err := cmd.Run(); err != nil {
 		log.Fatalf("Error activating virtual environment: %v", err)
 	}
+
 	var wg sync.WaitGroup
 
 	commands := []string{
@@ -35,12 +37,11 @@ func main() {
 		go func(cmd string) {
 			defer wg.Done()
 			runCommand(cmd)
+			time.Sleep(500 * time.Millisecond) // Introduce a delay between commands
 		}(cmd)
 	}
 
 	wg.Wait()
-
-	select {}
 }
 
 func runCommand(cmd string) {
