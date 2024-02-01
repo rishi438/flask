@@ -11,6 +11,7 @@
 5. Configure Gmail SMTP with Password,Mail and Username 
 
 ## Running
+- Run RabbitMQ service
 - **Terminal 1:** `python run.py`
 - **Terminal 2:** `celery -A run.celery_scheduler worker --pool=solo -l info` (Worker)
 - **Terminal 3:** `celery -A run.celery_scheduler beat -l info` (Scheduler)
