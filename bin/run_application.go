@@ -6,7 +6,6 @@ import (
 	"os/exec"
 	"path/filepath"
 	"sync"
-	"time"
 )
 
 func main() {
@@ -25,20 +24,32 @@ func main() {
 
 	var wg sync.WaitGroup
 
-	commands := []string{
-		"python run.py",
-		"celery -A run.celery_scheduler worker --pool=solo -l info",
-		"celery -A run.celery_scheduler beat -l info",
-		"celery -A run.celery_scheduler flower",
+	commands := []func(){
+		func() {
+			defer wg.Done()
+			log.Printf("Executing command: %s\n", "python run.py")
+			runCommand("python run.py")
+		},
+		func() {
+			defer wg.Done()
+			log.Printf("Executing command: %s\n", "celery -A run.celery_scheduler worker --pool=solo -l info")
+			runCommand("celery -A run.celery_scheduler worker --pool=solo -l info")
+		},
+		func() {
+			defer wg.Done()
+			log.Printf("Executing command: %s\n", "celery -A run.celery_scheduler beat -l info")
+			runCommand("celery -A run.celery_scheduler beat -l info")
+		},
+		func() {
+			defer wg.Done()
+			log.Printf("Executing command: %s\n", "celery -A run.celery_scheduler flower")
+			runCommandWithOutput("celery -A run.celery_scheduler flower")
+		},
 	}
 
 	for _, cmd := range commands {
 		wg.Add(1)
-		go func(cmd string) {
-			defer wg.Done()
-			runCommand(cmd)
-			time.Sleep(500 * time.Millisecond) // Introduce a delay between commands
-		}(cmd)
+		go cmd()
 	}
 
 	wg.Wait()
@@ -51,4 +62,13 @@ func runCommand(cmd string) {
 	if err := cmdExec.Run(); err != nil {
 		log.Fatalf("Error running command %q: %v", cmd, err)
 	}
+}
+
+func runCommandWithOutput(cmd string) {
+	cmdExec := exec.Command("powershell", "-Command", cmd)
+	output, err := cmdExec.CombinedOutput()
+	if err != nil {
+		log.Fatalf("Error running command %q: %v\nOutput:\n%s", cmd, err, output)
+	}
+	log.Printf("Command %q output:\n%s", cmd, output)
 }
